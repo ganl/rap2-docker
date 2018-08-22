@@ -1,3 +1,6 @@
 [submodule "rap2-delos"]
 	path = rap2-delos
 	url = https://github.com/thx/rap2-delos.git
+[submodule "rap2-dolores"]
+	path = rap2-dolores
+	url = https://github.com/thx/rap2-dolores.git
