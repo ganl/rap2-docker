@@ -47,7 +47,7 @@ COMPOSE_CONVERT_WINDOWS_PATHS=1
 ### Environment ###########################################
 
 # If you need to change the sources (i.e. to China), set CHANGE_NPM_SOURCE to true
-CHANGE_NPM_SOURCE=false
+CHANGE_NPM_SOURCE=true
 
 ### Docker Sync ###########################################
 
@@ -62,31 +62,21 @@ DOCKER_SYNC_STRATEGY=native_osx
 
 DB_HOST=mysql
 REDIS_HOST=redis
+WORKSPACE_TIMEZONE=UTC
 
 ### DOLORES #############################################
 
 DOLORES_PORT=80
-NGINX_HOST_HTTPS_PORT=443
-NGINX_HOST_LOG_PATH=./logs/nginx/
-NGINX_SITES_PATH=./nginx/sites/
-NGINX_PHP_UPSTREAM_CONTAINER=php-fpm
-NGINX_PHP_UPSTREAM_PORT=9000
 
 ### DELOS ################################################
 
 DELOS_PORT=8080
 DELOS_EXPOSE_PORT=80
-APACHE_HOST_HTTPS_PORT=443
-APACHE_HOST_LOG_PATH=./logs/apache2
-APACHE_SITES_PATH=./apache2/sites
-APACHE_PHP_UPSTREAM_CONTAINER=php-fpm
-APACHE_PHP_UPSTREAM_PORT=9000
-APACHE_PHP_UPSTREAM_TIMEOUT=60
-APACHE_DOCUMENT_ROOT=/var/www/
+DELOS_LOG_PATH=./logs/delos/
 
 ### MYSQL #################################################
 
-MYSQL_VERSION=latest
+MYSQL_VERSION=5.7.23
 MYSQL_DATABASE=rap2
 MYSQL_USER=rap2
 MYSQL_PASSWORD=secret
