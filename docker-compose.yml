@@ -89,8 +89,8 @@ services:
       volumes:
         - ${DATA_PATH_HOST}/mysql:/var/lib/mysql
         - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
-      ports:
-        - "${MYSQL_PORT}:3306"
+      # ports:
+        # - "${MYSQL_PORT}:3306"
       networks:
         backend:
           aliases:
@@ -119,8 +119,8 @@ services:
       build: ./redis
       volumes:
         - ${DATA_PATH_HOST}/redis:/data
-      ports:
-        - "${REDIS_PORT}:6379"
+      # ports:
+        # - "${REDIS_PORT}:6379"
       networks:
         backend:
           aliases:
