@@ -4,7 +4,7 @@ LABEL maintainer=ganl
 
 WORKDIR /app
 
-RUN mkdir /tmp/dolores
+RUN mkdir /tmp/dolores && mkdir /tmp/update-check
 COPY ./rap2-dolores /tmp/dolores
 
 COPY ./config.prod.js /tmp/dolores/src/config/config.prod.js
@@ -37,7 +37,7 @@ RUN apk update && apk add python
 RUN npm install -g serve
 # RUN npm install --unsafe-perm -g node-sass
 
-RUN /bin/sh -c 'cd /tmp/dolores && npm install && npm rebuild node-sass && npm run build && mv ./build/* /app/ && mv ./node_modules /app/ && rm -rf /tmp'
+RUN /bin/sh -c 'cd /tmp/dolores && npm install && npm rebuild node-sass && npm run build && mv ./build/* /app/ && mv ./node_modules /app/ && rm -rf /tmp/dolores'
 
 # ENTRYPOINT ["/bin/sh", "-c", "http-server -s -p 80"]
 # ENTRYPOINT ["/bin/sh", "-c", "serve -s -p 80"]
