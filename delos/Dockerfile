@@ -12,7 +12,7 @@ ADD ./rap2-delos /tmp/delos
 ARG CHANGE_NPM_SOURCE=false
 RUN if [ ${CHANGE_NPM_SOURCE} = true ]; then \
     # Change application source from TAONPM source
-    npm config set registry https://registry.npm.taobao.org \
+    npm config set registry https://registry.npm.taobao.org && \
     npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/ \
 ;fi
 
