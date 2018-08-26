@@ -21,7 +21,8 @@ services:
       build:
         context: ./dolores
         args:
-          - CHANGE_NPM_SOURCE=${CHANGE_NPM_SOURCE}
+          - NODE_VERSION=${NODE_VERSION}
+          - CHANGE_SOURCE=${CHANGE_SOURCE}
           - SERVER_HOST=${SERVER_HOST}
           - DELOS_PORT=${DELOS_PORT}
           - TZ=${WORKSPACE_TIMEZONE}
@@ -44,7 +45,8 @@ services:
       build:
         context: ./delos
         args:
-          - CHANGE_NPM_SOURCE=${CHANGE_NPM_SOURCE}
+          - NODE_VERSION=${NODE_VERSION}
+          - CHANGE_SOURCE=${CHANGE_SOURCE}
           - TZ=${WORKSPACE_TIMEZONE}
       depends_on:
         - ${DB_HOST}

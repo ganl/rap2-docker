@@ -46,8 +46,9 @@ COMPOSE_CONVERT_WINDOWS_PATHS=1
 
 ### Environment ###########################################
 
-# If you need to change the sources (i.e. to China), set CHANGE_NPM_SOURCE to true
-CHANGE_NPM_SOURCE=true
+# If you need to change the sources (i.e. to China), set CHANGE_SOURCE to true
+CHANGE_SOURCE=true
+NODE_VERSION=8.11.4
 
 ### Docker Sync ###########################################
 

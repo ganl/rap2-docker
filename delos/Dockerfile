@@ -1,4 +1,5 @@
-FROM node:8.11.1-alpine
+ARG NODE_VERSION=8.11.1
+FROM node:${NODE_VERSION}-alpine
 
 LABEL maintainer=ganl
 
@@ -7,10 +8,8 @@ WORKDIR /app
 RUN mkdir /tmp/delos
 ADD ./rap2-delos /tmp/delos
 
-#RUN ls /tmp/delos
-
-ARG CHANGE_NPM_SOURCE=false
-RUN if [ ${CHANGE_NPM_SOURCE} = true ]; then \
+ARG CHANGE_SOURCE=false
+RUN if [ ${CHANGE_SOURCE} = true ]; then \
     # Change application source from TAONPM source
     npm config set registry https://registry.npm.taobao.org && \
     npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/ \
