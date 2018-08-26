@@ -124,3 +124,29 @@ docker-compose exec mysql bash
 
 3 - 退出容器, 键入 `exit`.
 
+### [使用阿里云镜像加速]
+
+el7
+
+```
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+
+sudo service docker start
+```
+
+修改daemon配置文件/etc/docker/daemon.json来使用加速器, 加速地址获取：[https://cr.console.aliyun.com/cn-hangzhou/mirrors]()
+
+`sudo mkdir -p /etc/docker`
+
+```
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://9cujqpdr.mirror.aliyuncs.com"]
+}
+EOF
+```
+```
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
