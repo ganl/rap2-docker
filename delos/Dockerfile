@@ -17,7 +17,7 @@ RUN if [ ${CHANGE_SOURCE} = true ]; then \
     sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories \
 ;fi
 
-RUN apk add -U tzdata python
+RUN apk add -U tzdata python make gcc g++
 
 ARG TZ=UTC
 ENV TZ ${TZ}
