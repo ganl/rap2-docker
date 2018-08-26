@@ -1,4 +1,4 @@
-!#/bash/sh
+#!/bin/bash
 # 关闭所有正在运行容器
 # docker ps | awk  '{print $1}' | xargs docker stop
 

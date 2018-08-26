@@ -63,7 +63,7 @@ DOCKER_SYNC_STRATEGY=native_osx
 
 DB_HOST=mysql
 REDIS_HOST=redis
-WORKSPACE_TIMEZONE=UTC
+WORKSPACE_TIMEZONE=Asia/Shanghai
 
 ### DOLORES #############################################
 
