@@ -32,17 +32,17 @@ git submodule update
 
 `DATA_PATH_HOST=~/.rap2/data`
 
-### 修改DOLORES本地映射端口 #############################################
+* 修改DOLORES本地映射端口 
 
-DOLORES_PORT=80
+`DOLORES_PORT=80`
 
-### 修改DELOS本地映射端口 ################################################
+* 修改DELOS本地映射端口
 
-DELOS_PORT=8080
+`DELOS_PORT=8080`
 
 此处配置会替换dolores的config.prod.js中serve的端口，修改后需要重新编译dolores
 
-**修改`DELOS_PORT`和`SERVER_HOST`之后，需要执行`docker-compose build dolores`编译前端镜像；后端delos不用重新编译**
+**修改`DELOS_PORT`和`SERVER_HOST`，需要执行`docker-compose build dolores`编译前端镜像；后端delos不用重新编译**
 
 ## 使用
 
@@ -84,6 +84,8 @@ docker-compose up -d dolores
 > use rap2
 > update Users set password = '14e1b600b1fd579f47433b88e8d85291' where fullname = 'admin';
 ```
+修改后的admin密码为123456，初始化的登录邮箱为admin@rap2.com
+
 <a name="Docker"></a>
 ### [Docker]
 
