@@ -26,8 +26,7 @@ git submodule update
 
 `SERVER_HOST=localhost`
 
-默认值localhost，后端和前端独立运行的，此处配置会替换dolores的config.prod.js中serve的值
-
+默认值localhost，后端和前端独立运行的，此处配置会替换dolores的config.prod.js中serve的值，修改后需要重新编译dolores
 
 * 修改本地存储路径
 
@@ -41,11 +40,13 @@ DOLORES_PORT=80
 
 DELOS_PORT=8080
 
-此处配置会替换dolores的config.prod.js中serve的端口
+此处配置会替换dolores的config.prod.js中serve的端口，修改后需要重新编译dolores
+
+**修改`DELOS_PORT`和`SERVER_HOST`之后，需要执行`docker-compose build dolores`编译前端镜像；后端delos不用重新编译**
 
 ## 使用
 
-启动
+1 - 启动
 `docker-compose up dolores`
 
 ```
@@ -58,20 +59,31 @@ rap2_mysql_1     docker-entrypoint.sh mysqld      Up      0.0.0.0:13306->3306/tc
 rap2_redis_1     docker-entrypoint.sh redis ...   Up      0.0.0.0:16379->6379/tcp
 ```
 
-初始化DB
+2 - 初始化DB
 
 ```bash
 ➜  rap2-docker git:(master) docker-compose exec delos sh
 /app # node scripts/init
 ```
 
-后台运行容器
+3 - 后台运行容器
 
 ```
 docker-compose stop
 docker-compose up -d dolores
 ```
 
+4 - 修改admin密码
+
+`docker-compose exec mysql bash`
+
+用.env中设定的密码登录数据库，默认root!pwd
+
+```bash
+#mysql -u root -p 
+> use rap2
+> update Users set password = '14e1b600b1fd579f47433b88e8d85291' where fullname = 'admin';
+```
 <a name="Docker"></a>
 ### [Docker]
 
