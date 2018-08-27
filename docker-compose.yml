@@ -23,6 +23,7 @@ services:
         args:
           - NODE_VERSION=${NODE_VERSION}
           - CHANGE_SOURCE=${CHANGE_SOURCE}
+          - DELOS_PROTOCOL=${DELOS_PROTOCOL}
           - SERVER_HOST=${SERVER_HOST}
           - DELOS_PORT=${DELOS_PORT}
           - TZ=${WORKSPACE_TIMEZONE}

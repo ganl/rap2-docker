@@ -7,14 +7,11 @@ WORKDIR /app
 
 RUN mkdir /tmp/dolores && mkdir /tmp/update-check
 COPY ./rap2-dolores /tmp/dolores
-
 COPY ./config.prod.js /tmp/dolores/src/config/config.prod.js
 
+ARG DELOS_PROTOCOL
 ARG SERVER_HOST
 ARG DELOS_PORT
-
-RUN sed -i "s/delos:8080/${SERVER_HOST}:${DELOS_PORT}/" /tmp/dolores/src/config/config.prod.js && \
-	cat /tmp/dolores/src/config/config.prod.js
 
 ARG CHANGE_SOURCE=false
 # RUN echo ${CHANGE_SOURCE}
@@ -26,7 +23,9 @@ RUN if [ ${CHANGE_SOURCE} = true ]; then \
     sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories \
 ;fi
 
-RUN apk update && apk add python make gcc g++ tzdata
+RUN sed -i "s/http:\/\/delos:8080/${DELOS_PROTOCOL}:\/\/${SERVER_HOST}:${DELOS_PORT}/" /tmp/dolores/src/config/config.prod.js && \
+	cat /tmp/dolores/src/config/config.prod.js && \
+	apk update && apk add python make gcc g++ tzdata
 
 ARG TZ=UTC
 ENV TZ ${TZ}
