@@ -23,9 +23,9 @@ services:
         args:
           - NODE_VERSION=${NODE_VERSION}
           - CHANGE_SOURCE=${CHANGE_SOURCE}
-          - DELOS_PROTOCOL=${DELOS_PROTOCOL}
-          - SERVER_HOST=${SERVER_HOST}
-          - DELOS_PORT=${DELOS_PORT}
+          - DELOS_PROTOCOL=${DELOS_SERVE_PROTOCOL}
+          - DELOS_HOST=${DELOS_SERVE_HOST}
+          - DELOS_PORT=${DELOS_SERVE_PORT}
           - TZ=${WORKSPACE_TIMEZONE}
       depends_on:
         - delos
@@ -53,7 +53,7 @@ services:
         - ${DB_HOST}
         - redis
       environment:
-        - EXPOSE_PORT=${DELOS_EXPOSE_PORT}
+        - EXPOSE_PORT=80
         - MYSQL_URL=${DB_HOST}
         - MYSQL_PORT=3306
         - MYSQL_USERNAME=${MYSQL_USER}
@@ -66,11 +66,10 @@ services:
 
         # production / development
         - NODE_ENV=production
-      ###### 'sleep 30 && node scripts/init' will drop the tables
       ###### RUN ONLY ONCE THEN REMOVE 'sleep 30 && node scripts/init'
       # command: /bin/sh -c 'sleep 30; node scripts/init; node dispatch.js'
       ports:
-        - "${DELOS_PORT}:${DELOS_EXPOSE_PORT}"
+        - "${DELOS_PORT}:80"
       tty: true
       networks:
         backend:

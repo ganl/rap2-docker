@@ -9,10 +9,6 @@ RUN mkdir /tmp/dolores && mkdir /tmp/update-check
 COPY ./rap2-dolores /tmp/dolores
 COPY ./config.prod.js /tmp/dolores/src/config/config.prod.js
 
-ARG DELOS_PROTOCOL
-ARG SERVER_HOST
-ARG DELOS_PORT
-
 ARG CHANGE_SOURCE=false
 # RUN echo ${CHANGE_SOURCE}
 RUN if [ ${CHANGE_SOURCE} = true ]; then \
@@ -23,7 +19,10 @@ RUN if [ ${CHANGE_SOURCE} = true ]; then \
     sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories \
 ;fi
 
-RUN sed -i "s/http:\/\/delos:8080/${DELOS_PROTOCOL}:\/\/${SERVER_HOST}:${DELOS_PORT}/" /tmp/dolores/src/config/config.prod.js && \
+ARG DELOS_PROTOCOL=http
+ARG DELOS_HOST=localhost
+ARG DELOS_PORT=8080
+RUN sed -i "s/http:\/\/delos:8080/${DELOS_PROTOCOL}:\/\/${DELOS_HOST}:${DELOS_PORT}/" /tmp/dolores/src/config/config.prod.js && \
 	cat /tmp/dolores/src/config/config.prod.js && \
 	apk update && apk add python make gcc g++ tzdata
 
@@ -34,7 +33,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN /bin/sh -c 'cd /tmp/dolores && npm install && npm rebuild node-sass && npm run build && mv ./build/* /app/ && rm -rf /tmp/dolores'
 
 # RUN npm install -g http-server
-RUN npm install -g serve
+RUN npm install -g serve && apk del python make gcc g++ tzdata && rm -rf /var/cache/apk/*
 
 # ENTRYPOINT ["/bin/sh", "-c", "http-server -s -p 80"]
 ENTRYPOINT ["serve", "-s", "-p", "80"]

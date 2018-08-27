@@ -18,21 +18,28 @@ git submodule update
 
 复制env文件
 
-`cp env-example .env`
+`mv env-example .env`
 
 修改.env，主要的几个地方：
 
-* 替换SERVER_HOST，改为主机IP或者域名
+* 修改dolores中delos服务的serve相关值
 
-`SERVER_HOST=localhost`
+```
+# used in config.prod.js
+DELOS_SERVE_PROTOCOL=http
+# local's IP or Domain or hostname
+DELOS_SERVE_HOST=localhost
+#Generally, same with DELOS_PORT
+DELOS_SERVE_PORT=8080
+```
 
-默认值localhost，后端和前端独立运行的，此处配置会替换dolores的config.prod.js中serve的值，修改后需要重新编译dolores
+后端和前端独立运行的，此处配置会替换dolores的config.prod.js中serve的值，修改后需要重新编译dolores
 
 * 修改本地存储路径
 
 `DATA_PATH_HOST=~/.rap2/data`
 
-* 修改DOLORES本地映射端口 
+* 修改DOLORES本地映射端口
 
 `DOLORES_PORT=80`
 
@@ -40,9 +47,8 @@ git submodule update
 
 `DELOS_PORT=8080`
 
-此处配置会替换dolores的config.prod.js中serve的端口，修改后需要重新编译dolores
 
-**修改`DELOS_PORT`和`SERVER_HOST`，需要执行`docker-compose build dolores`编译前端镜像；后端delos不用重新编译**
+**修改`DELOS_SERVE_PROTOCOL`和`DELOS_SERVE_HOST`以及`DELOS_SERVE_PORT`，需要执行`docker-compose build dolores`编译前端镜像；后端delos不用重新编译**
 
 ## 使用
 
