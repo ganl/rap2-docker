@@ -1,6 +1,7 @@
 [submodule "delos/rap2-delos"]
 	path = delos/rap2-delos
-	url = https://github.com/thx/rap2-delos.git
+	url = https://github.com/ganl/rap2-delos.git
+	branch = worktree
 [submodule "dolores/rap2-dolores"]
 	path = dolores/rap2-dolores
 	url = https://github.com/thx/rap2-dolores.git
