@@ -16,6 +16,7 @@ git submodule update
 
 # changed
 git submodule sync
+git submodule update --remote
 ```
 
 ## 修改配置
