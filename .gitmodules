@@ -4,4 +4,5 @@
 	branch = worktree
 [submodule "dolores/rap2-dolores"]
 	path = dolores/rap2-dolores
-	url = https://github.com/thx/rap2-dolores.git
+	url = https://github.com/ganl/rap2-dolores.git
+	branch = deploy

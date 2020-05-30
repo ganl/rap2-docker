@@ -13,7 +13,11 @@
 ```
 git submodule init
 git submodule update
+
+# changed
+git submodule sync
 ```
+
 ## 修改配置
 
 复制env文件
@@ -91,6 +95,26 @@ docker-compose up -d dolores
 > update Users set password = '14e1b600b1fd579f47433b88e8d85291' where fullname = 'admin';
 ```
 修改后的admin密码为123456，初始化的登录邮箱为admin@rap2.com
+
+## 升级
+
+1 - 升级DB
+
+```bash
+➜  rap2-docker git:(master) docker-compose exec delos node scripts/updateSchema
+
+/app # node scripts/updateSchema
+```
+
+2 - 升级镜像
+
+```bash
+docker-compose down
+# 重新构建并启动
+docker-compose up --build -d dolores
+
+docker image prune -f
+```
 
 <a name="Docker"></a>
 ### [Docker]
