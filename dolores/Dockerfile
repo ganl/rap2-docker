@@ -1,4 +1,4 @@
-ARG NODE_VERSION=8.11.1
+ARG NODE_VERSION=lts
 FROM node:${NODE_VERSION}-alpine
 
 LABEL maintainer=ganl

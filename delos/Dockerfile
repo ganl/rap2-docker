@@ -1,4 +1,5 @@
-ARG NODE_VERSION=10.15.0
+ARG NODE_VERSION=lts
+
 FROM node:${NODE_VERSION}-alpine
 
 LABEL maintainer=ganl
@@ -19,10 +20,16 @@ RUN if [ ${CHANGE_SOURCE} = true ]; then \
 
 RUN apk add -U tzdata python make gcc g++
 
+RUN wget http://rap2-taobao-org.oss-cn-beijing.aliyuncs.com/pandoc-2.7.3-linux.tar.gz && \
+    tar -xf pandoc-2.7.3-linux.tar.gz && \
+    cp pandoc-2.7.3/bin/* /usr/bin/ && \
+    pandoc -v && \
+    rm -rf pandoc-2.7.3-linux.tar.gz pandoc-2.7.3
+
 ARG TZ=UTC
 ENV TZ ${TZ}
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN /bin/sh -c 'cd /tmp/delos && npm install && npm install -g typescript && npm run build && mv ./dist/* /app/ && mv ./node_modules /app/ && rm -rf /tmp'
+RUN /bin/sh -c 'cd /tmp/delos && ls && npm install -g typescript && npm install && npm run build && mv ./dist/* /app/ && mv ./node_modules /app/ && mv ./public /app/ && cp -f ./package.json /app/ && rm -rf /tmp && ls && ls /app'
 
 CMD ["node", "dispatch.js"]

@@ -43,7 +43,7 @@ COMPOSE_CONVERT_WINDOWS_PATHS=1
 
 # If you need to change the sources (i.e. to China), set CHANGE_SOURCE to true
 CHANGE_SOURCE=true
-NODE_VERSION=8.11.4
+NODE_VERSION=12.17.0
 
 ### Docker Sync ###########################################
 
@@ -76,6 +76,13 @@ DELOS_SERVE_PORT=8080
 # expose
 DELOS_PORT=8080
 DELOS_LOG_PATH=./logs/delos/
+DELOS_MAIL_HOST=smtp.xxx.com
+DELOS_MAIL_PORT=587
+DELOS_MAIL_SECURE=false
+DELOS_MAIL_USER=user@xxx.com
+DELOS_MAIL_PASS=pass
+DELOS_MAIL_SENDER=user@xxx.com
+
 
 ### MYSQL #################################################
 

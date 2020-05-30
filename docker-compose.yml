@@ -66,8 +66,14 @@ services:
 
         # production / development
         - NODE_ENV=production
-      ###### RUN ONLY ONCE THEN REMOVE 'sleep 30 && node scripts/init'
-      # command: /bin/sh -c 'sleep 30; node scripts/init; node dispatch.js'
+
+        # email
+        - MAIL_HOST=${DELOS_MAIL_HOST}
+        - MAIL_PORT=${DELOS_MAIL_PORT}
+        - MAIL_SECURE=${DELOS_MAIL_SECURE}
+        - MAIL_USER=${DELOS_MAIL_USER}
+        - MAIL_PASS=${DELOS_MAIL_PASS}
+        - MAIL_SENDER=${DELOS_MAIL_SENDER}
       ports:
         - "${DELOS_PORT}:80"
       tty: true
