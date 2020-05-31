@@ -54,7 +54,7 @@ services:
         - redis
       environment:
         # `node dispatch.js` will run on SERVE_PORT
-        - SERVE_PORT=${DELOS_PORT}
+        - SERVE_PORT=${SERVE_PORT}
         - MYSQL_URL=${DB_HOST}
         - MYSQL_PORT=3306
         - MYSQL_USERNAME=${MYSQL_USER}
@@ -76,7 +76,7 @@ services:
         - MAIL_PASS=${DELOS_MAIL_PASS}
         - MAIL_SENDER=${DELOS_MAIL_SENDER}
       ports:
-        - "${DELOS_SERVE_PORT}:${DELOS_PORT}"
+        - "${DELOS_PORT}:${SERVE_PORT}"
       tty: true
       networks:
         backend:

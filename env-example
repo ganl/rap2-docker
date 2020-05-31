@@ -62,22 +62,27 @@ WORKSPACE_TIMEZONE=Asia/Shanghai
 
 ### DOLORES #############################################
 
+# expose port
 DOLORES_PORT=8888
 
 # used in config.prod.ts, 
 DELOS_SERVE_PROTOCOL=https
 # local's IP or Domain or hostname
 DELOS_SERVE_HOST=rap2api.xxx.com
-#Generally, same with DELOS_PORT, expose port
+# Generally, same with DELOS_PORT (nginx proxy)
 DELOS_SERVE_PORT=443
 
 ### DELOS ################################################
 
+#expose port
 DELOS_PORT=8088
+
+SERVE_PORT=8080
+
 DELOS_LOG_PATH=./logs/delos/
 DELOS_MAIL_HOST=smtp.xxx.com
 DELOS_MAIL_PORT=587
-DELOS_MAIL_SECURE=false
+DELOS_MAIL_SECURE=true
 DELOS_MAIL_USER=user@xxx.com
 DELOS_MAIL_PASS=pass
 DELOS_MAIL_SENDER=user@xxx.com
