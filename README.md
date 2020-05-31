@@ -14,8 +14,9 @@
 git submodule init
 git submodule update
 
-# changed
+#官方代码经常不能正常编译，可修改.gitmodules中的url为自己的fork库；修改后执行
 git submodule sync
+git submodule update --remote
 ```
 
 ## 修改配置
@@ -26,37 +27,42 @@ git submodule sync
 
 修改.env，主要的几个地方：
 
-* 修改dolores中delos服务的serve相关值
+* 修改dolores（前端）中访问delos（接口）服务serve相关值
 
 ```
-# used in config.prod.js
+# used in config.prod.ts, 
 DELOS_SERVE_PROTOCOL=http
 # local's IP or Domain or hostname
 DELOS_SERVE_HOST=localhost
-#Generally, same with DELOS_PORT
-DELOS_SERVE_PORT=8080
+#Generally, same with DELOS_PORT, expose port
+DELOS_SERVE_PORT=8888
 ```
 
-后端和前端独立运行的，此处配置会替换dolores的config.prod.js中serve的值，修改后需要重新编译dolores
+后端和前端分离部署的（两个docker），此处配置会替换dolores的config.prod.ts中serve的值，修改后需要重新编译前端`dolores`镜像；如上配置dolores将通过 `http://localhost:8888` 访问后端`delos`。
 
 * 修改本地存储路径
 
+mysql存放路径，建议第一次部署确定好路径；修改路径数据不会自动Migrate，需手动导出再导入
+
 `DATA_PATH_HOST=~/.rap2/data`
 
-* 修改DOLORES本地映射端口
+* 修改DOLORES本地映射端口（镜像内运行端口80不可配，expose端口可配）
 
 `DOLORES_PORT=80`
 
-* 修改DELOS本地映射端口
+* 修改DELOS运行端口（默认8080，代码取的环境变量`SERVE_PORT`的值）
 
-`DELOS_PORT=8080`
+`DELOS_PORT=8880`
 
 
 **修改`DELOS_SERVE_PROTOCOL`和`DELOS_SERVE_HOST`以及`DELOS_SERVE_PORT`，需要执行`docker-compose build dolores`编译前端镜像；后端delos不用重新编译**
 
+![](https://github.com/ganl/mdAssets/blob/master/img/rap2-docker/running.jpg?raw=true)
+
 ## 使用
 
 1 - 启动
+
 `docker-compose up dolores`
 
 ```
@@ -79,7 +85,7 @@ rap2_redis_1     docker-entrypoint.sh redis ...   Up      0.0.0.0:16379->6379/tc
 3 - 后台运行容器
 
 ```
-docker-compose stop
+docker-compose down
 docker-compose up -d dolores
 ```
 
@@ -87,7 +93,7 @@ docker-compose up -d dolores
 
 `docker-compose exec mysql bash`
 
-用.env中设定的密码登录数据库，默认root!pwd
+用.env中设定的密码登录数据库，默认`root!pwd`
 
 ```bash
 #mysql -u root -p 
@@ -117,7 +123,7 @@ docker image prune -f
 ```
 
 <a name="Docker"></a>
-### [Docker]
+### [Docker]常用命令
 
 <a name="List-current-running-Containers"></a>
 ### 列出正在运行的容器
