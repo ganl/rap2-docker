@@ -8,7 +8,7 @@
 APP_CODE_PATH_CONTAINER=/app:cached
 
 # Choose storage path on your machine. For all storage systems
-DATA_PATH_HOST=~/.rap2/data
+DATA_PATH_HOST=/data/rap2
 
 ### Drivers ################################################
 
@@ -62,18 +62,18 @@ WORKSPACE_TIMEZONE=Asia/Shanghai
 
 ### DOLORES #############################################
 
-DOLORES_PORT=80
+DOLORES_PORT=8888
 
 # used in config.prod.ts, 
-DELOS_SERVE_PROTOCOL=http
+DELOS_SERVE_PROTOCOL=https
 # local's IP or Domain or hostname
-DELOS_SERVE_HOST=localhost
+DELOS_SERVE_HOST=rap2api.xxx.com
 #Generally, same with DELOS_PORT, expose port
-DELOS_SERVE_PORT=8888
+DELOS_SERVE_PORT=443
 
 ### DELOS ################################################
 
-DELOS_PORT=8880
+DELOS_PORT=8088
 DELOS_LOG_PATH=./logs/delos/
 DELOS_MAIL_HOST=smtp.xxx.com
 DELOS_MAIL_PORT=587
