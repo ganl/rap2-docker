@@ -64,17 +64,16 @@ WORKSPACE_TIMEZONE=Asia/Shanghai
 
 DOLORES_PORT=80
 
-# used in config.prod.js
+# used in config.prod.ts, 
 DELOS_SERVE_PROTOCOL=http
 # local's IP or Domain or hostname
 DELOS_SERVE_HOST=localhost
-#Generally, same with DELOS_PORT
-DELOS_SERVE_PORT=8080
+#Generally, same with DELOS_PORT, expose port
+DELOS_SERVE_PORT=8888
 
 ### DELOS ################################################
 
-# expose
-DELOS_PORT=8080
+DELOS_PORT=8880
 DELOS_LOG_PATH=./logs/delos/
 DELOS_MAIL_HOST=smtp.xxx.com
 DELOS_MAIL_PORT=587
